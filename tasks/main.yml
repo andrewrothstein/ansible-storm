@@ -1,13 +1,31 @@
 ---
-- name: download storm...
-  environment: proxy_env
-  get_url: url='{{ storm_url }}' dest='/tmp/{{ storm_archive }}'
+- name: download...
+  get_url: >
+    url={{storm_url}}
+    dest=/tmp/{{storm_archive}}
+    owner=root
+    group=root
+    mode=0644
 
-- name: install storm...
-  unarchive: copy=no src='/tmp/{{ storm_archive }}' dest='/opt'
+- name: unarchive...
+  unarchive: >
+    copy=no
+    src=/tmp/{{storm_archive}}
+    dest=/opt
+    owner=root
+    group=root
 
 - name: link /opt/storm...
-  file: src='/opt/{{ storm_name }}' dest=/opt/storm state=link
+  file: >
+    src=/opt/{{storm_name}}
+    dest=/opt/storm
+    state=link
+    owner=root
+    group=root
 
 - name: include storm in the default path...
-  copy: src='etc/profile.d/storm.sh' dest='/etc/profile.d/storm.sh' mode=644
+  copy: >
+    src=etc/profile.d/storm.sh
+    dest=/etc/profile.d/storm.sh
+    mode=0644
+    
