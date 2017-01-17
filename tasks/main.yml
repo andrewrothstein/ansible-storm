@@ -2,35 +2,36 @@
 - name: download...
   become: yes
   become_user: root
-  get_url: >
-    url={{storm_url}}
-    dest=/tmp/{{storm_archive}}
-    mode=0644
+  get_url:
+    url: '{{storm_url}}'
+    dest: /tmp/{{storm_tgz}}
+    mode: '0644'
+    checksum: '{{storm_checksum}}'
 
 - name: unarchive...
   become: yes
   become_user: root
-  unarchive: >
-    copy=no
-    src=/tmp/{{storm_archive}}
-    dest=/opt
-    creates=/opt/{{storm_name}}
+  unarchive:
+    copy: no
+    src: /tmp/{{storm_tgz}}
+    dest: '{{storm_parent_dir}}'
+    creates: '{{storm_parent_dir}}/{{storm_name}}'
 
-- name: link /opt/storm...
+- name: linking...
   become: yes
   become_user: root
-  file: >
-    src=/opt/{{storm_name}}
-    dest=/opt/storm
-    state=link
+  file:
+    src: '{{storm_parent_dir}}/{{storm_name}}'
+    dest: '{{storm_parent_dir}}/storm'
+    state: link
 
 - name: include storm in the default path...
   become: yes
   become_user: root
   with_items:
     - etc/profile.d/storm.sh
-  copy: >
-    src={{item}}
-    dest=/{{item}}
-    mode=0644
+  template:
+    src: '{{item}}.j2'
+    dest: /{{item}}
+    mode: '0644'
     
