@@ -1,5 +1,5 @@
 ---
-storm_ver : '1.0.2'
+storm_ver : '1.0.3'
 storm_mirror : http://mirror.cc.columbia.edu/pub/software/apache/storm
-storm_checksum: sha256:b3fd2475e88e4b5e30f0e47eab70363419d67c15ddc7fe1f3c423ac0499eb76e
+storm_checksum: sha512:0489502B22D6A7BAF9EC3B1C4D2D8A33D5FCDBC8E9203B84AD02BF3897FBD2A5423BB7E721DB42DC11CB045C6992F395E43CF9C818C2D7A6C8A4DB275A082133
 storm_parent_dir: /usr/local
