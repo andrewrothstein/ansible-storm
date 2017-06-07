@@ -19,6 +19,12 @@ galaxy_info:
       versions:
         - trusty
         - xenial
+    - name: Debian
+      versions:
+        - jessie
+    - name: Alpine
+      versions:
+        - all
   galaxy_tags:
     - streaming
     - storm
@@ -26,7 +32,7 @@ galaxy_info:
 
 dependencies:
   - role: andrewrothstein.unarchive-deps
-    version: v1.0.6
+    version: v1.0.8
   - role: andrewrothstein.java-oracle-jre
-    version: v1.0.1
+    version: v2.0.0
   

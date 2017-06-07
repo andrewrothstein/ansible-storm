@@ -1,7 +1,8 @@
 andrewrothstein.storm
 =====================
+[![Build Status](https://travis-ci.org/andrewrothstein/ansible-storm.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-storm)
 
-A role for installing [Apache Storm](https://storm.apache.org/index.html)
+Installs [Apache Storm](https://storm.apache.org/index.html)
 
 Requirements
 ------------

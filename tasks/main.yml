@@ -15,23 +15,24 @@
     copy: no
     src: /tmp/{{storm_tgz}}
     dest: '{{storm_parent_dir}}'
-    creates: '{{storm_parent_dir}}/{{storm_name}}'
+    creates: '{{storm_install_dir}}'
 
 - name: linking...
   become: yes
   become_user: root
   file:
-    src: '{{storm_parent_dir}}/{{storm_name}}'
-    dest: '{{storm_parent_dir}}/storm'
+    src: '{{storm_install_dir}}'
+    dest: '{{storm_install_link_dir}}'
     state: link
 
 - name: include storm in the default path...
   become: yes
   become_user: root
   with_items:
-    - etc/profile.d/storm.sh
+    - f: storm.sh
+      d: /etc/profile.d
   template:
-    src: '{{item}}.j2'
-    dest: /{{item}}
-    mode: '0644'
+    src: '{{item.f}}.j2'
+    dest: '{{item.d}}/{{item.f}}'
+    mode: '{{item.m|default("0644")}}'
     

@@ -1,4 +1,9 @@
 ---
 storm_name : 'apache-storm-{{storm_ver}}'
 storm_tgz : '{{storm_name}}.tar.gz'
+
+# http://mirror.cc.columbia.edu/pub/software/apache/storm/apache-storm-1.1.0/apache-storm-1.1.0.tar.gz
 storm_url : '{{storm_mirror}}/{{storm_name}}/{{storm_tgz}}'
+
+storm_install_dir: '{{storm_parent_dir}}/{{storm_name}}'
+storm_install_link_dir: '{{storm_parent_dir}}/storm'
