@@ -12,7 +12,7 @@
   become: yes
   become_user: root
   unarchive:
-    copy: no
+    remote_src: no
     src: /tmp/{{storm_tgz}}
     dest: '{{storm_parent_dir}}'
     creates: '{{storm_install_dir}}'
