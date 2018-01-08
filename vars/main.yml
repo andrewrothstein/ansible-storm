@@ -7,3 +7,4 @@ storm_url : '{{storm_mirror}}/{{storm_name}}/{{storm_tgz}}'
 
 storm_install_dir: '{{storm_parent_dir}}/{{storm_name}}'
 storm_install_link_dir: '{{storm_parent_dir}}/storm'
+storm_checksum: '{{storm_checksums[storm_ver]}}'
