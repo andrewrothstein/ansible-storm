@@ -1,29 +1,43 @@
 ---
-- name: download...
+- name: check for install...
   become: yes
-  become_user: root
-  get_url:
-    url: '{{storm_url}}'
-    dest: /tmp/{{storm_tgz}}
-    mode: '0644'
-    checksum: '{{storm_checksum}}'
+  stat:
+    path: '{{storm_install_dir}}'
+  register: storm_binary
+- when: not storm_binary.stat.exists
+  block:
+    - name: download...
+      become: yes
+      become_user: root
+      get_url:
+        url: '{{storm_url}}'
+        dest: /tmp/{{storm_tgz}}
+        mode: '0644'
+        checksum: '{{storm_checksum}}'
 
-- name: unarchive...
-  become: yes
-  become_user: root
-  unarchive:
-    remote_src: yes
-    src: /tmp/{{storm_tgz}}
-    dest: '{{storm_parent_dir}}'
-    creates: '{{storm_install_dir}}'
+    - name: unarchive...
+      become: yes
+      become_user: root
+      unarchive:
+        remote_src: yes
+        src: /tmp/{{storm_tgz}}
+        dest: '{{storm_parent_dir}}'
+        creates: '{{storm_install_dir}}'
 
-- name: linking...
-  become: yes
-  become_user: root
-  file:
-    src: '{{storm_install_dir}}'
-    dest: '{{storm_install_link_dir}}'
-    state: link
+    - name: linking...
+      become: yes
+      become_user: root
+      file:
+        src: '{{storm_install_dir}}'
+        dest: '{{storm_install_link_dir}}'
+        state: link
+  always:
+    - name: cleanup...
+      become: yes
+      become_user: root
+      file:
+        path: /tmp/{{storm_tgz}}
+        state: absent
 
 - name: include storm in the default path...
   become: yes
