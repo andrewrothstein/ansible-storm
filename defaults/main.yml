@@ -1,6 +1,6 @@
 ---
-storm_ver : '1.2.2'
-storm_mirror : http://mirror.cc.columbia.edu/pub/software/apache/storm
+storm_ver: '1.2.2'
+storm_mirror: http://mirror.cc.columbia.edu/pub/software/apache/storm
 storm_checksums:
   '1.0.5': sha256:27f1ba65994cd23a04dfce1cafe3f4332b80870e6b7330ede6df54126d18b2f5
   '1.1.0': sha256:6f584b45ec7f8d0cfd2fa78deb5de392bece07a09158a948b0ed3016ef689142
