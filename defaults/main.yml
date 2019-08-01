@@ -1,5 +1,5 @@
 ---
-storm_ver: '1.2.2'
+storm_ver: '2.0.0'
 storm_mirror: http://mirror.cc.columbia.edu/pub/software/apache/storm
 storm_checksums:
   '1.0.5': sha256:27f1ba65994cd23a04dfce1cafe3f4332b80870e6b7330ede6df54126d18b2f5
@@ -10,4 +10,6 @@ storm_checksums:
   '1.2.1': sha256:7b4a7b7d384f328c193c0942f0348ef5711e793d06a247d5bef9a9b8d7c3ed9c
   # http://mirror.cc.columbia.edu/pub/software/apache/storm/apache-storm-1.2.2/apache-storm-1.2.2.tar.gz
   '1.2.2': sha256:e97e92ea13998c95ee37565bdf4d6f6a379deb259ec76cb0178cd356502e657f
+  # https://www.apache.org/dist/storm/apache-storm-2.0.0/apache-storm-2.0.0.tar.gz.sha512
+  '2.0.0': sha512:F2942566EBD7C8DE53EAA5F9740C34C6F2ED57D26BE203C56D10E551278E9DF12D7BF1DA7E448B8D0D61BCB2087F0573F321CB56EDF5A9CCB5914333FAA87297
 storm_parent_dir: /usr/local
