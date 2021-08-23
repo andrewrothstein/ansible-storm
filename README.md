@@ -1,6 +1,6 @@
 andrewrothstein.storm
 =====================
-[![Build Status](https://travis-ci.org/andrewrothstein/ansible-storm.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-storm)
+![Build Status](https://github.com/andrewrothstein/ansible-storm/actions/workflows/build.yml/badge.svg)
 
 Installs [Apache Storm](https://storm.apache.org/index.html)
 
