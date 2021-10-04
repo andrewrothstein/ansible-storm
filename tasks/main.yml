@@ -1,51 +1,51 @@
 ---
-- name: check for install...
-  become: yes
+- name: check for install in {{ storm_install_dir }}
+  become: true
   stat:
-    path: '{{storm_install_dir}}'
+    path: '{{ storm_install_dir }}'
   register: storm_binary
 - when: not storm_binary.stat.exists
   block:
-    - name: download...
-      become: yes
+    - name: downloading {{ storm_url }}
+      become: true
       become_user: root
       get_url:
-        url: '{{storm_url}}'
-        dest: /tmp/{{storm_tgz}}
+        url: '{{ storm_url }}'
+        dest: '{{ storm_tmp_tgz }}'
         mode: '0644'
-        checksum: '{{storm_checksum}}'
+        checksum: '{{ storm_checksum }}'
 
-    - name: unarchive...
-      become: yes
+    - name: unarchive {{ storm_tmp_tgz }} to {{ storm_parent_dir }}
+      become: true
       become_user: root
       unarchive:
-        remote_src: yes
-        src: /tmp/{{storm_tgz}}
-        dest: '{{storm_parent_dir}}'
-        creates: '{{storm_install_dir}}'
+        remote_src: true
+        src: '{{ storm_tmp_tgz }}'
+        dest: '{{ storm_parent_dir }}'
+        creates: '{{ storm_install_dir }}'
 
-    - name: linking...
-      become: yes
+    - name: linking {{ storm_install_link_dir }} to {{ storm_install_dir }}
+      become: true
       become_user: root
       file:
-        src: '{{storm_install_dir}}'
-        dest: '{{storm_install_link_dir}}'
+        src: '{{ storm_install_dir }}'
+        dest: '{{ storm_install_link_dir }}'
         state: link
   always:
-    - name: cleanup...
-      become: yes
+    - name: rm {{ storm_tmp_tgz }}
+      become: true
       become_user: root
       file:
-        path: /tmp/{{storm_tgz}}
+        path: '{{ storm_tmp_tgz }}'
         state: absent
 
 - name: include storm in the default path...
-  become: yes
+  become: true
   become_user: root
   with_items:
     - f: storm.sh
       d: /etc/profile.d
   template:
-    src: '{{item.f}}.j2'
-    dest: '{{item.d}}/{{item.f}}'
-    mode: '{{item.m|default("0644")}}'
+    src: '{{ item.f }}.j2'
+    dest: '{{ item.d }}/{{ item.f }}'
+    mode: '{{ item.m|default("0644") }}'
