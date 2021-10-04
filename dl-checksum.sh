@@ -8,4 +8,4 @@ dl_ver() {
     printf "  '%s': sha512:%s\n" $ver $(curl -sSL $url | tr '\n' ' ' | tr -s '[:blank:]' ' ' | sed -e 's/ //g' | awk -F ':' '{print $2}')
 }
 
-dl_ver ${1:-2.2.0}
+dl_ver ${1:-2.3.0}
