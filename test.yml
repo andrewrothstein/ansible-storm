@@ -3,7 +3,7 @@
   roles:
     - role: '{{ playbook_dir }}'
   tasks:
-    - command: bash -c 'storm version'
+    - command: bash -l -c 'storm version'
       register: test_storm_version
     - name: storm version
       debug:
