@@ -4,4 +4,4 @@
 - role: andrewrothstein.bash
   version: v1.1.10
 - role: andrewrothstein.temurin
-  version: 0.1.3
+  version: 0.1.4
