@@ -1,5 +1,5 @@
 ---
-storm_ver: 2.4.0
+storm_ver: 2.6.1
 storm_mirror: https://www.apache.org/dist/storm
 storm_parent_dir: /usr/local
 storm_checksums:
@@ -21,3 +21,5 @@ storm_checksums:
   '2.3.0': sha512:1F210A288FC133070B1D48179831A8B0AF1106FCBA86B4B1475CDCAF7764B40B6153306795CB2A8BE864ABF49646394FE196EC7EFB3CC72DE96C23D15A33F7C1
   # https://www.apache.org/dist/storm/apache-storm-2.4.0/apache-storm-2.4.0.tar.gz.sha512
   '2.4.0': sha512:5C2F7859CA17046A45A98FA54E6A34C7BDAEEA2107CD87346A1AD69822653C475D1E1C4732D42A6EDD7515B80B9C8642BE03AB219D7941753A7DB1505B8B287D
+  # https://www.apache.org/dist/storm/apache-storm-2.6.1/apache-storm-2.6.1.tar.gz.sha512
+  '2.6.1': sha512:186787a31b2e3aba5448a7411351e54e50a469a19eff241c665e11ff4177fe7a89ca70a3a37590422ee7d2f78cba6d90b29afc54acfc526994705faf25488dec

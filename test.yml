@@ -1,10 +1,13 @@
 ---
-- hosts: all
+- name: Testing andrewrothstein.storm
+  hosts: all
   roles:
     - role: '{{ playbook_dir }}'
   tasks:
-    - command: bash -l -c 'storm version'
+    - name: Executing 'storm version'
+      ansible.builtin.command: bash -lc 'storm version'
+      changed_when: false
       register: test_storm_version
-    - name: storm version
-      debug:
+    - name: Output of 'storm version'
+      ansible.builtin.debug:
         msg: '{{ test_storm_version.stdout }}'

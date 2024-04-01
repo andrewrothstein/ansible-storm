@@ -1,39 +1,36 @@
 ---
-dependencies:
-- andrewrothstein.unarchive-deps
-- andrewrothstein.bash
-- openjdk_app: jre
-  role: andrewrothstein.temurin
 galaxy_info:
   author: Andrew Rothstein
   company: BlackRock
   description: Apache Storm role
   galaxy_tags:
-  - streaming
-  - storm
-  - apache
-  license:
-  - MIT
-  min_ansible_version: 1.2
+    - streaming
+    - storm
+    - apache
+  license: MIT
+  min_ansible_version: '1.2'
+  namespace: andrewrothstein
   platforms:
-  - name: Alpine
-    versions:
-    - all
-  - name: Archlinux
-    versions:
-    - all
-  - name: Debian
-    versions:
-    - bullseye
-    - buster
-  - name: EL
-    versions:
-    - 8
-  - name: Fedora
-    versions:
-    - 35
-    - 36
-  - name: Ubuntu
-    versions:
-    - bionic
-    - focal
+    - name: Alpine
+      versions:
+        - all
+    - name: ArchLinux
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - bookworm
+        - bullseye
+    - name: EL
+      versions:
+        - '8'
+        - '9'
+    - name: Fedora
+      versions:
+        - '38'
+        - '39'
+    - name: Ubuntu
+      versions:
+        - focal
+        - jammy
+  role_name: storm

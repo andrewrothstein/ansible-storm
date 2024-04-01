@@ -1,51 +1,61 @@
 ---
-- name: check for install in {{ storm_install_dir }}
+- name: Installing andrewrothstein.unarchivedeps
+  ansible.builtin.include_role:
+    name: andrewrothstein.unarchivedeps
+- name: Installing andrewrothstein.bash
+  ansible.builtin.include_role:
+    name: andrewrothstein.bash
+- name: Installing andrewrothstein.temurin
+  ansible.builtin.include_role:
+    name: andrewrothstein.temurin
+  vars:
+    openjdk_app: jre
+- name: Checking for install in {{ storm_install_dir }}
   become: true
-  stat:
+  ansible.builtin.stat:
     path: '{{ storm_install_dir }}'
   register: storm_binary
-- when: not storm_binary.stat.exists
+- name: Downloading and installing apache storm
+  when: not storm_binary.stat.exists
   block:
-    - name: downloading {{ storm_url }}
+    - name: Downloading {{ storm_url }}
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ storm_url }}'
         dest: '{{ storm_tmp_tgz }}'
-        mode: '0644'
+        mode: '644'
         checksum: '{{ storm_checksum }}'
-
-    - name: unarchive {{ storm_tmp_tgz }} to {{ storm_parent_dir }}
+    - name: Unarchive {{ storm_tmp_tgz }} to {{ storm_parent_dir }}
       become: true
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         src: '{{ storm_tmp_tgz }}'
         dest: '{{ storm_parent_dir }}'
         creates: '{{ storm_install_dir }}'
-
-    - name: linking {{ storm_install_link_dir }} to {{ storm_install_dir }}
-      become: true
-      become_user: root
-      file:
-        src: '{{ storm_install_dir }}'
-        dest: '{{ storm_install_link_dir }}'
-        state: link
   always:
-    - name: rm {{ storm_tmp_tgz }}
+    - name: Rm {{ storm_tmp_tgz }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ storm_tmp_tgz }}'
         state: absent
 
-- name: include storm in the default path...
+- name: Linking {{ storm_install_link_dir }} to {{ storm_install_dir }}
+  become: true
+  become_user: root
+  ansible.builtin.file:
+    src: '{{ storm_install_dir }}'
+    dest: '{{ storm_install_link_dir }}'
+    state: link
+- name: Include storm in the default path...
   become: true
   become_user: root
   with_items:
     - f: storm.sh
       d: /etc/profile.d
-  template:
+  ansible.builtin.template:
     src: '{{ item.f }}.j2'
     dest: '{{ item.d }}/{{ item.f }}'
-    mode: '{{ item.m|default("0644") }}'
+    mode: '{{ item.m | default("644") }}'
